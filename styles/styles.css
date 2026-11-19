@@ -36,9 +36,10 @@ main a.button:any-link, main button, header nav .nav-tools a.button:any-link {
 main a.button:hover, main a.button:focus, main button:hover { background-color: var(--link-hover-color); }
 main a.button.secondary { background-color: transparent; color: var(--brand-primary); border: 2px solid currentcolor; }
 
-/* hero: white text on a Midnight overlay */
+/* hero: white text on a Midnight overlay, content left-aligned in a 1200px column */
 main .hero { min-height: 420px; }
-main .hero h1 { color: #FFFFFF; font-size: 56px; line-height: 60px; max-width: 14ch; }
+main .hero > div { max-width: 1200px; margin: 0 auto; }
+main .hero h1 { color: #FFFFFF; font-size: 56px; line-height: 60px; max-width: 14ch; margin-left: 0; margin-right: 0; }
 main .hero p { color: #FFFFFF; max-width: 48ch; }
 main .hero::after { content: ''; position: absolute; inset: 0; background: rgb(10 27 92 / 55%); z-index: -1; }
 main .hero a.button.secondary { color: #FFFFFF; border-color: #FFFFFF; }
@@ -46,6 +47,8 @@ main .hero a.button.secondary { color: #FFFFFF; border-color: #FFFFFF; }
 /* cards */
 main .cards > ul > li { border: 1px solid var(--brand-line); background: #FFFFFF; }
 main .cards .cards-card-body h3 { color: var(--brand-primary); }
+/* columns: keep side images from towering over the text */
+main .columns img { max-height: 420px; object-fit: cover; }
 
 /* turquoise accent rule above section headings */
 main .section > .default-content-wrapper > h2::after {
