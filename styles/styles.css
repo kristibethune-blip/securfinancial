@@ -1,4 +1,4 @@
-/* SecurFinancial demo theme - generated from the SecurFinancial Brand Guidelines (Edition 01, Canada, 2026, demo only) on 2026-11-18. Demo use only. */
+/* SecurFinancial demo theme - generated from the SecurFinancial Brand Guidelines (Edition 01, Canada, 2026, demo only) on 2026-11-18, revised 2026-11-19 (v3). Demo use only. */
 /* Banking layout: Blue leads, Turquoise is the accent. White text only on Blue, Midnight or Black. */
 :root {
   --background-color: #FFFFFF;   /* White - default field */
@@ -24,33 +24,70 @@ main h2 { font-family: var(--heading-font-family); font-weight: 700; font-size: 
 main h3 { font-family: var(--heading-font-family); font-weight: 700; font-size: 20px; line-height: 28px; }
 main p, main li { font-size: 16px; line-height: 24px; }
 
+/* page width: keep every section's content in a centred 1200px column (the hero stays full-bleed) */
+main .section > div { max-width: 1200px; margin-left: auto; margin-right: auto; padding-left: 32px; padding-right: 32px; box-sizing: border-box; }
+main .section.hero-container > div { max-width: none; padding-left: 0; padding-right: 0; }
+main .section { padding-top: 48px; padding-bottom: 48px; }
+main .section.hero-container { padding-top: 0; padding-bottom: 0; }
+
 /* header / nav */
 header .nav-wrapper { background-color: #FFFFFF; border-bottom: 1px solid var(--brand-line); }
 header nav, header nav a:any-link { color: #000000; }
 header nav .nav-brand img { max-height: 40px; width: auto; }
 
-/* buttons */
-main a.button:any-link, main button, header nav .nav-tools a.button:any-link {
-  background-color: var(--brand-primary); color: #FFFFFF; font-family: var(--body-font-family);
+/* buttons: styles both decorated buttons and the bold / italic links they are made from */
+main a.button:any-link,
+main p > strong:only-child > a:only-child,
+main p > em:only-child > a:only-child {
+  display: inline-block; box-sizing: border-box; margin: 8px 0; padding: 12px 28px;
+  border: 2px solid var(--brand-primary); border-radius: 2.4em;
+  font-family: var(--body-font-family); font-size: 16px; font-weight: 700; font-style: normal; line-height: 20px;
+  text-decoration: none; text-align: center;
 }
-main a.button:hover, main a.button:focus, main button:hover { background-color: var(--link-hover-color); }
-main a.button.secondary { background-color: transparent; color: var(--brand-primary); border: 2px solid currentcolor; }
+main a.button:any-link, main p > strong:only-child > a:only-child, main button {
+  background-color: var(--brand-primary); color: #FFFFFF;
+}
+main a.button:hover, main a.button:focus, main button:hover,
+main p > strong:only-child > a:only-child:hover, main p > strong:only-child > a:only-child:focus {
+  background-color: var(--link-hover-color); border-color: var(--link-hover-color); color: #FFFFFF; text-decoration: none;
+}
+main a.button.secondary, main p > em:only-child > a:only-child {
+  background-color: transparent; color: var(--brand-primary); border-color: var(--brand-primary);
+}
+main a.button.secondary:hover, main p > em:only-child > a:only-child:hover { background-color: var(--light-color); text-decoration: none; }
 
 /* hero: white text on a Midnight overlay, content left-aligned in a 1200px column */
-main .hero { min-height: 420px; }
-main .hero > div { max-width: 1200px; margin: 0 auto; }
+main .hero { min-height: 420px; display: flex; align-items: center; }
+main .hero > div { width: 100%; max-width: 1200px; margin: 0 auto; }
 main .hero h1 { color: #FFFFFF; font-size: 56px; line-height: 60px; max-width: 14ch; margin-left: 0; margin-right: 0; }
-main .hero p { color: #FFFFFF; max-width: 48ch; }
-main .hero::after { content: ''; position: absolute; inset: 0; background: rgb(10 27 92 / 55%); z-index: -1; }
-main .hero a.button.secondary { color: #FFFFFF; border-color: #FFFFFF; }
+main .hero p { color: #FFFFFF; max-width: 48ch; font-size: 18px; line-height: 28px; }
+main .hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgb(10 27 92 / 85%) 0%, rgb(10 27 92 / 55%) 55%, rgb(10 27 92 / 25%) 100%); z-index: -1; }
+main .hero p:has(> strong:only-child > a:only-child), main .hero p:has(> em:only-child > a:only-child) { display: inline-block; margin-right: 12px; }
+main .hero a.button.secondary, main .hero p > em:only-child > a:only-child { color: #FFFFFF; border-color: #FFFFFF; }
+main .hero a.button.secondary:hover, main .hero p > em:only-child > a:only-child:hover { background-color: rgb(255 255 255 / 15%); }
 
-/* cards */
-main .cards > ul > li { border: 1px solid var(--brand-line); background: #FFFFFF; }
-main .cards .cards-card-body h3 { color: var(--brand-primary); }
+@media (width < 900px) {
+  main .hero h1 { font-size: 40px; line-height: 44px; }
+  main .section > div { padding-left: 24px; padding-right: 24px; }
+}
+
+/* cards: fill the row, turquoise accent on top */
+main .cards > ul { grid-template-columns: repeat(auto-fit, minmax(257px, 1fr)); gap: 24px; }
+main .cards > ul > li { border: 1px solid var(--brand-line); border-top: 4px solid var(--brand-accent); background: #FFFFFF; }
+main .cards .cards-card-body { margin: 24px; }
+main .cards .cards-card-body h3 { color: var(--brand-primary); margin-top: 0; }
+main .cards .cards-card-body p:last-child a:any-link { font-weight: 700; }
+
 /* columns: keep side images from towering over the text */
 main .columns img { max-height: 420px; object-fit: cover; }
+main .columns > div { gap: 32px; align-items: center; }
 
-/* turquoise accent rule above section headings */
+/* "How it works" steps on Mist: white panels with a blue step title */
+main .section.highlight .columns > div { align-items: stretch; }
+main .section.highlight .columns > div > div { background: #FFFFFF; border: 1px solid var(--brand-line); padding: 24px; }
+main .section.highlight .columns h3 { color: var(--brand-primary); margin-top: 0; }
+
+/* turquoise accent rule under section headings */
 main .section > .default-content-wrapper > h2::after {
   content: ''; display: block; width: 48px; height: 4px; margin-top: 12px; background-color: var(--brand-accent);
 }
